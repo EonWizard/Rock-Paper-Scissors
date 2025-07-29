@@ -86,9 +86,32 @@ function playRound(humanChoice, computerChoice){
         
         
     }
+    console.log("Human Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
 }
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection); //plays a round of Rock, Paper Scissors
+// playRound(humanSelection, computerSelection); //plays a round of Rock, Paper Scissors
+
+function playGame(){
+    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection);
+
+    if(computerScore > humanScore){
+        console.log("Computer Player Wins The Game!");
+    }
+    else if(computerScore < humanScore){
+        console.log("Player Wins The Game!");
+    }
+    else{
+        console.log("It's a Draw");
+    }
+
+}
+
+playGame();
