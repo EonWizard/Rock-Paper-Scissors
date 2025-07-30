@@ -1,14 +1,14 @@
 // console.log("Hello World");
 
 function getComputerChoice(choice){
-   let n = Math.random() * 100;
+   let n = Math.floor(Math.random() * 3);
    
 
    //conditionals to determine choice
-   if(n <= 33){
+   if(n === 0){
     choice = "Rock";
    }
-   else if (33 < n  && n <= 66){
+   else if (n === 1){
     choice = "Paper";
    }
    else{
@@ -40,76 +40,47 @@ function getHumanChoice(choice){
 
 // console.log(getHumanChoice()); Checks to make sure getHumanChoice works
 
-let humanScore = 0, computerScore = 0;
+
 
 // A function that plays a round
 function playRound(humanChoice, computerChoice){
-    //player chooses rock
-    if(humanChoice.toLowerCase() === "rock" && computerChoice === "Rock"){
+    //player and computer choose the same thing
+    if(humanChoice.toLowerCase() === computerChoice){
         console.log("It's a Draw!");
     }
-    else if(humanChoice.toLowerCase() === "rock" && computerChoice === "Paper"){
-        console.log("Computer Player Wins!");
-        computerScore = computerScore + 1;
+    //human wins
+    if((humanChoice.toLowerCase() === "rock" && computerChoice === "Scissors") || (humanChoice.toLowerCase() === "paper" && computerChoice === "Rock") || (humanChoice.toLowerCase() === "scissors" && computerChoice === "Paper")) {
+        console.log("Round Winner: Player");
+        humanScore++;
     }
-    else if(humanChoice.toLowerCase() === "rock" && computerChoice === "Scissors"){
-        console.log("Player Wins!");
-        humanScore = humanScore + 1;
+    else{
+        console.log("Round Winner: Computer")
+        computerScore++;
     }
-    //player chooses paper
-    if(humanChoice.toLowerCase() === "paper" && computerChoice === "Rock"){
-        console.log("Player Wins!");
-        humanScore = humanScore + 1;
-    }
-    else if(humanChoice.toLowerCase() === "paper" && computerChoice === "Paper"){
-        console.log("It's a Draw!");
-        
-    }
-    else if(humanChoice.toLowerCase() === "paper" && computerChoice === "Scissors"){
-        console.log("Computer Player Wins!");
-        computerScore = computerScore + 1;
-        
-    }
-    //player chooses scissors
-    if(humanChoice.toLowerCase() === "scissors" && computerChoice === "Rock"){
-        console.log("Computer Player Wins!");
-        computerScore = computerScore + 1;
-        
-    }
-    else if(humanChoice.toLowerCase() === "scissors" && computerChoice === "Paper"){
-        console.log("Player Wins!");
-        humanScore = humanScore + 1;
-        
-    }
-    else if(humanChoice.toLowerCase() === "scissors" && computerChoice === "Scissors"){
-        console.log("It's a Draw");
-        
-        
-    }
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
+   
+
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+let humanScore = 0, computerScore = 0;
 
 // playRound(humanSelection, computerSelection); //plays a round of Rock, Paper Scissors
 
 function playGame(){
-    playRound(humanSelection, computerSelection);
-    playRound(humanSelection, computerSelection);
-    playRound(humanSelection, computerSelection);
-    playRound(humanSelection, computerSelection);
-    playRound(humanSelection, computerSelection);
+    for(i = 0; i < 5; i++){
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
 
-    if(computerScore > humanScore){
-        console.log("Computer Player Wins The Game!");
+        playRound(humanSelection, computerSelection);
+    }
+
+    if(humanScore > computerScore){
+        console.log("Player Wins the Game! :)");
     }
     else if(computerScore < humanScore){
-        console.log("Player Wins The Game!");
+        console.log("Computer Wins the Game...how sad :(");
     }
     else{
-        console.log("It's a Draw");
+        console.log("It's a draw....bummer :/")
     }
 
 }
